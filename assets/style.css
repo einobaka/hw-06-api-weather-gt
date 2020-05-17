@@ -1,0 +1,10 @@
+body {
+    font-family: 'Nova Mono', monospace;
+}
+
+#banner {
+    background-color: orange;
+    text-align: center;
+    border-style: solid;
+    padding: 10px;
+}
