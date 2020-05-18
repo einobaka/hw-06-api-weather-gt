@@ -25,3 +25,24 @@ body {
     font-size: xx-large;
     font-weight: bold;
 }
+
+.uvLow {
+    background-color: green;
+}
+
+.uvMed {
+    background-color: yellow;
+}
+
+.uvHigh {
+    background-color: orange;
+}
+
+.uvVH {
+    background-color: red;
+}
+
+.uvEH {
+    background-color: orangered;
+}
+

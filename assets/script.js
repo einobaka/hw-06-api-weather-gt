@@ -30,7 +30,7 @@ function fillCity() {
         var selectCity = $(this).attr("city");
         console.log(selectCity)
         $("#city").val(selectCity)
-        $("#citySpan").remove();
+        $("#cityDiv").remove();
         callWeather();
     });
 };
@@ -46,7 +46,7 @@ $("#search").on("click", function (e) {
     var cityInput = $(city.input).val().trim();
     console.log(cityInput);
     cities.push(cityInput);
-    $("#citySpan").remove();
+    $("#cityDiv").remove();
     fillCity();
     callWeather();
 });
@@ -54,28 +54,104 @@ $("#search").on("click", function (e) {
 function callWeather() {
     var cityInput = $(city.input).val().trim();
     // console.log(cityInput);
+
+    // Query test link
+    // https://api.openweathermap.org/data/2.5/forecast?q=tolleson&units=imperial&appid=d1cbb5981d42bc71b129a89f7ff66db5
+
+    // Weather index query
     var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&units=imperial&appid=" + APIkey
     $.ajax({
         url: queryURL,
         method: "GET"
     })
         .then(function (response) {
-            console.log(response);
+            // console.log(response);
+            var currentDiv = $("<div>");
             var citySpan = $("<span>");
+            var tempP = $("<p>");
+            var humP = $("<p>");
+            var windP = $("<p>");
+            var uvSpan = $("<p>");
             var icon = $("<img>");
 
+            var qLat = response.city.coord.lat;
+            var qLon = response.city.coord.lon;
+
             var cityName = response.city.name;
+            var cityTemp = response.list[0].main.temp;
+            var cityHum = response.list[0].main.humidity;
+            var cityWind = response.list[0].wind.speed;
+            var cityCond = response.list[0].weather[0].description;
+            // var cityUV =
             var iconBase = "http://openweathermap.org/img/wn/";
             var iconResponse = response.list[0].weather[0].icon;
 
-            $("#current").append(citySpan)
-            $(citySpan).attr("id", "citySpan").text(cityName + " " + dateToday + " ").append(icon)
+            $("#current").append(currentDiv);
+            $(currentDiv).append(citySpan).attr("id", "cityDiv")
+            $(citySpan).attr("id", "citySpan").text(cityName + " " + dateToday + " ").append(icon).append("(" + cityCond + ")").append(tempP).append(humP).append(windP).append(uvSpan);
             $(icon).attr("src", iconBase + iconResponse + ".png")
+            $(tempP).text("Temperature: " + cityTemp + " ºF");
+            $(humP).text("Humidity: " + cityHum + "%");
+            $(windP).text("Wind Speed: " + cityWind + " MPH")
+            $(uvSpan).attr("id", "uv");
 
             console.log(cityName)
+            console.log(qLat);
+            console.log(qLon);
 
-            clearCity()
+            // clearCity()
+
+            // Query test link
+            // https://api.openweathermap.org/data/2.5/uvi/forecast?lat=33.45&lon=-112.2593&appid=d1cbb5981d42bc71b129a89f7ff66db5
+
+            // UV index query
+            var queryURL = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + qLat + "&lon=" + qLon + "&appid=" + APIkey;
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+                .then(function (response) {
+                    var uvRes = response[0].value;
+                    var uvIndex = $("<span>");
+
+                    $("#uv").text("UV Index:").append(uvIndex)
+                    $(uvIndex).text(uvRes);
+
+                    if (uvRes <= 2) {
+                        $(uvIndex).attr("class", "uvLow").append(" (low)");
+                    }
+                    else if (uvIndex > 2 && uvIndex <= 5) {
+                        $(uvIndex).attr("class", "uvMed").append(" (medium)");
+                    }
+                    else if (uvIndex > 5 && uvIndex <= 7) {
+                        $(uvIndex).attr("class", "uvHigh").append(" (high)");
+                    }
+                    else if (uvIndex > 7 && uvIndex <= 10) {
+                        $(uvIndex).attr("class", "uvVH").append(" (very high)");
+                    }
+                    else if (uvRes >= 11) {
+                        $(uvIndex).attr("class", "uvEH").append(" (extremely high)");
+                    };
+
+                });
+
+
         });
+
+    // UV index query
+    // Query test link
+    // https://api.openweathermap.org/data/2.5/uvi/forecast?lat=33.45&lon=-112.2593&appid=d1cbb5981d42bc71b129a89f7ff66db5
+
+    // var queryURL = "https://api.openweathermap.org/data/2.5/uvi/forecast?lat=" + qlat + "&qlon=" + lon + "&appid=" + APIkey;
+    // $.ajax({
+    //     url: queryURL,
+    //     method: "GET"
+    // })
+    //     .then(function (response) {
+
+    //     });
+
+
 };
 
 function clearCity() {
