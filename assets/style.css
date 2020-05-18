@@ -8,3 +8,20 @@ body {
     border-style: solid;
     padding: 10px;
 }
+
+#cities {
+    margin: 10px;
+}
+
+#current {
+    margin: 15px;
+}
+
+#fiveday {
+    margin: 15px;
+}
+
+#citySpan {
+    font-size: xx-large;
+    font-weight: bold;
+}
