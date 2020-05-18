@@ -19,10 +19,11 @@ function fillCity() {
 
     for (let i = 0; i < cities.length; i++) {
         var cityButton = $("<li>")
-        cityButton.attr("id", cities[i]);
+        cityButton.attr("id", cities[i]).attr("class", "list-group-item list-group-item-primary list-group-item-action");
         cityButton.text(cities[i]);
         $("#cities").append(cityButton);
     }
+
 };
 
 $("#search").on("click", function (e) {
@@ -31,12 +32,8 @@ $("#search").on("click", function (e) {
     console.log(cityInput);
     cities.push(cityInput);
     fillCity();
-});
-
-$("#city").on("click", function (e) {
-    $(this
-        
-        )
+    $("#city").val("");
 
 });
+
 

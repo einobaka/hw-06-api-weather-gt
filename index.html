@@ -30,14 +30,24 @@
             <div class="col-md-3">
                 <div class="row">
 
-                    <form>
+                    <!-- <form>
                         <input type="text" placeholder="Search for a City!" id="city">
                         <input type="submit" value="Search" id="search">
+                    </form> -->
+
+                    <form>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Search for a City!" id="city">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit"
+                                    id="search">SEARCH</button>
+                            </div>
+                        </div>
                     </form>
 
 
                 </div>
-                <div class="row" id="cities"></div><br>
+                <ul class="row list-group" id="cities"></ul>
 
             </div>
             <div class="col-md-9" id="weather">
