@@ -3,11 +3,19 @@ body {
     background-color:rgba(255, 166, 0, 0.322);
 }
 
+.text {
+    background-color: orange;
+    text-align: center;
+    border-style: solid;
+    padding: 5px;
+}
+
 #banner {
     background-color: orange;
     text-align: center;
     border-style: solid;
     padding: 10px;
+    margin: 5px;
 }
 
 #cities {
@@ -15,11 +23,11 @@ body {
 }
 
 #current {
-    margin: 15px;
+    margin: 10px;
 }
 
 #fiveday {
-    margin: 15px;
+    margin: 10px;
 }
 
 #citySpan {
@@ -50,3 +58,13 @@ body {
 #leftList {
     align-items: center;
 }
+
+.smallWeather {
+    width: 130px;
+    height: 180px;
+    margin: 5px;
+    padding: 5px;
+    outline-style: solid;
+    text-align: center;
+    background-color: whitesmoke;
+};
