@@ -31,6 +31,7 @@ function fillCity() {
         console.log(selectCity)
         $("#city").val(selectCity)
         $("#cityDiv").remove();
+        $("#fiveday").empty();
         callWeather();
     });
 
@@ -144,6 +145,7 @@ function callWeather() {
                     ];
 
                     for (let i = 0; i < 5; i++) {
+
                         var smallCol = $("<div>");
                         var tempPS = $("<p>");
                         var humPS = $("<p>");
@@ -162,16 +164,8 @@ function callWeather() {
                         $(tempPS).text("Temp: " + temp + "ºF");
                         $(humPS).text("Humidity: " + hum + "%");
 
-
-
-
                         // console.log(iconResponse);
-
-
-
-
                     }
-
 
                 });
 
