@@ -49,7 +49,7 @@ $("#search").on("click", function (e) {
     $("#cityDiv").remove();
     fillCity();
     callWeather();
-    localStorage.setItem("cities", cities);
+    localStorage.setItem("cities", JSON.stringify(cities));
     console.log(cities);
 });
 
@@ -149,15 +149,28 @@ function clearCity() {
     $("#search").attr("disabled", true);
 };
 
-// function getStorage() {
-//     cities = localStorage.getItem("cities");
-// };
+function getStorage() {
+    cities = JSON.parse(localStorage.getItem("cities"));
 
-// $(document).ready(function () {
-//     // getStorage();
-// });
+    for (let i = 0; i < cities.length; i++) {
+        var cityButton = $("<li>")
+        cityButton.attr("city", cities[i]).attr("class", "list-group-item list-group-item-light list-group-item-action");
+        cityButton.text(cities[i]);
+        $("#cities").append(cityButton);
+    }
 
+    $("li").on("click", function (e) {
+        e.preventDefault();
+        var selectCity = $(this).attr("city");
+        console.log(selectCity)
+        $("#city").val(selectCity)
+        $("#cityDiv").remove();
+        callWeather();
+    });
+};
 
-
+$("#saved").on("click", function () {
+    getStorage();
+});
 
 
