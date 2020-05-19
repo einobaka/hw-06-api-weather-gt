@@ -62,11 +62,11 @@ function callWeather() {
 
     // console.log(cityInput);
 
-    // Query test link
-    // https://api.openweathermap.org/data/2.5/forecast?q=tolleson&units=imperial&appid=d1cbb5981d42bc71b129a89f7ff66db5
+    // Query test query link
+    // https://api.openweathermap.org/data/2.5/weather?q=tolleson&units=imperial&appid=d1cbb5981d42bc71b129a89f7ff66db5
 
-    // Weather index query
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&units=imperial&appid=" + APIkey
+    // Current weather index query
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&units=imperial&appid=" + APIkey
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -81,17 +81,17 @@ function callWeather() {
             var uvSpan = $("<p>");
             var icon = $("<img>");
 
-            var qLat = response.city.coord.lat;
-            var qLon = response.city.coord.lon;
+            var qLat = response.coord.lat;
+            var qLon = response.coord.lon;
 
-            var cityName = response.city.name;
-            var cityTemp = response.list[0].main.temp;
-            var cityHum = response.list[0].main.humidity;
-            var cityWind = response.list[0].wind.speed;
-            var cityCond = response.list[0].weather[0].description;
+            var cityName = response.name;
+            var cityTemp = response.main.temp;
+            var cityHum = response.main.humidity;
+            var cityWind = response.wind.speed;
+            var cityCond = response.weather[0].description;
 
             var iconBase = "http://openweathermap.org/img/wn/";
-            var iconResponse = response.list[0].weather[0].icon;
+            var iconResponse = response.weather[0].icon;
 
             $("#current").append(currentDiv);
             $(currentDiv).append(citySpan).attr("id", "cityDiv")
@@ -101,6 +101,21 @@ function callWeather() {
             $(humP).text("Humidity: " + cityHum + "%");
             $(windP).text("Wind Speed: " + cityWind + " MPH")
             $(uvSpan).attr("id", "uv");
+
+            // Query test link
+            // https://api.openweathermap.org/data/2.5/forecast?q=tolleson&units=imperial&appid=d1cbb5981d42bc71b129a89f7ff66db5
+
+            // 5 day forecast
+            // var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&units=imperial&appid=" + APIkey
+            // $.ajax({
+            //     url: queryURL,
+            //     method: "GET"
+            // })
+            //     .then(function (response) {
+
+            //     });
+
+
 
             // console.log(cityName)
             // console.log(qLat);
