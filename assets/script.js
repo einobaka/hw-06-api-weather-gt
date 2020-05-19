@@ -9,7 +9,7 @@ $("#city").on("click", function () {
 
 var cities = [];
 var city = {
-    input: "",
+    input: $("#city"),
 };
 
 // Adding cities function
@@ -33,12 +33,9 @@ function fillCity() {
         $("#cityDiv").remove();
         callWeather();
     });
-};
 
-$("#test").on("click", function (e) {
-    var cityInput = $(city.input);
-    // console.log(cityInput)
-});
+
+};
 
 $("#search").on("click", function (e) {
     e.preventDefault();
@@ -53,8 +50,17 @@ $("#search").on("click", function (e) {
     console.log(cities);
 });
 
+$("#saved").on("click", function () {
+    cities = JSON.parse(localStorage.getItem("cities"));
+    $("#saved").attr("disabled", true);
+    fillCity();
+    console.log(city.input);
+});
+
 function callWeather() {
+
     var cityInput = $(city.input).val().trim();
+
     // console.log(cityInput);
 
     // Query test link
@@ -127,7 +133,7 @@ function callWeather() {
                     if (uvRes > 5 && uvRes <= 7) {
                         $(uvIndex).attr("class", "uvHigh").append(" (high)");
                     }
-                    if (uvRes > 7 && uvRes <= 10.99) {
+                    if (uvRes > 7 && uvRes <= 11) {
                         $(uvIndex).attr("class", "uvVH").append(" (very high)");
                     }
                     if (uvRes >= 11) {
@@ -149,28 +155,29 @@ function clearCity() {
     $("#search").attr("disabled", true);
 };
 
-function getStorage() {
-    cities = JSON.parse(localStorage.getItem("cities"));
+// function getStorage() {
 
-    for (let i = 0; i < cities.length; i++) {
-        var cityButton = $("<li>")
-        cityButton.attr("city", cities[i]).attr("class", "list-group-item list-group-item-light list-group-item-action");
-        cityButton.text(cities[i]);
-        $("#cities").append(cityButton);
-    }
+//     cities = JSON.parse(localStorage.getItem("cities"));
 
-    $("li").on("click", function (e) {
-        e.preventDefault();
-        var selectCity = $(this).attr("city");
-        console.log(selectCity)
-        $("#city").val(selectCity)
-        $("#cityDiv").remove();
-        callWeather();
-    });
-};
+//     for (let i = 0; i < cities.length; i++) {
+//         var cityButton = $("<li>")
+//         cityButton.attr("city", cities[i]).attr("class", "list-group-item list-group-item-light list-group-item-action");
+//         cityButton.text(cities[i]);
+//         $("#cities").append(cityButton);
+//     }
 
-$("#saved").on("click", function () {
-    getStorage();
-});
+    // $("li").on("click", function (e) {
+    //     e.preventDefault();
+    //     var selectCity = $(this).attr("city");
+    //     city.input = selectCity,
+    //     console.log(selectCity)
+    //     $("#city").val(selectCity)
+    //     $("#cityDiv").remove();
+
+    //         callWeather();
+    // });
+// };
+
+
 
 

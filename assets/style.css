@@ -47,3 +47,6 @@ body {
     background-color: orangered;
 }
 
+#leftList {
+    align-items: center;
+}
