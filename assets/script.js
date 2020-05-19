@@ -37,18 +37,20 @@ function fillCity() {
 
 $("#test").on("click", function (e) {
     var cityInput = $(city.input);
-    console.log(cityInput)
+    // console.log(cityInput)
 });
 
 $("#search").on("click", function (e) {
     e.preventDefault();
     city.input = $("#city")
     var cityInput = $(city.input).val().trim();
-    console.log(cityInput);
+    // console.log(cityInput);
     cities.push(cityInput);
     $("#cityDiv").remove();
     fillCity();
     callWeather();
+    localStorage.setItem("cities", cities);
+    console.log(cities);
 });
 
 function callWeather() {
@@ -97,9 +99,7 @@ function callWeather() {
 
             // console.log(cityName)
             // console.log(qLat);
-            // console.log(qLon);
-
-            clearCity()
+            // console.log(qLon);          
 
             // Query test link
             // https://api.openweathermap.org/data/2.5/uvi/forecast?lat=33.45&lon=-112.2593&appid=d1cbb5981d42bc71b129a89f7ff66db5
@@ -137,16 +137,26 @@ function callWeather() {
 
                 });
 
+            clearCity();
 
         });
 
 };
 
+// Function for clearing input for new search
 function clearCity() {
     $("#city").val("");
     $("#search").attr("disabled", true);
-
 };
+
+// function getStorage() {
+//     cities = localStorage.getItem("cities");
+// };
+
+// $(document).ready(function () {
+//     // getStorage();
+// });
+
 
 
 
