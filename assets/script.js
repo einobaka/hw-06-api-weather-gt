@@ -34,7 +34,6 @@ function fillCity() {
         callWeather();
     });
 
-
 };
 
 $("#search").on("click", function (e) {
@@ -146,7 +145,6 @@ function callWeather() {
             clearCity();
 
         });
-
 };
 
 // Function for clearing input for new search
@@ -154,30 +152,4 @@ function clearCity() {
     $("#city").val("");
     $("#search").attr("disabled", true);
 };
-
-// function getStorage() {
-
-//     cities = JSON.parse(localStorage.getItem("cities"));
-
-//     for (let i = 0; i < cities.length; i++) {
-//         var cityButton = $("<li>")
-//         cityButton.attr("city", cities[i]).attr("class", "list-group-item list-group-item-light list-group-item-action");
-//         cityButton.text(cities[i]);
-//         $("#cities").append(cityButton);
-//     }
-
-    // $("li").on("click", function (e) {
-    //     e.preventDefault();
-    //     var selectCity = $(this).attr("city");
-    //     city.input = selectCity,
-    //     console.log(selectCity)
-    //     $("#city").val(selectCity)
-    //     $("#cityDiv").remove();
-
-    //         callWeather();
-    // });
-// };
-
-
-
 
