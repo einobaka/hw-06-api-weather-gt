@@ -49,17 +49,9 @@ $("#search").on("click", function (e) {
     console.log(cities);
 });
 
-$("#saved").on("click", function () {
-    cities = JSON.parse(localStorage.getItem("cities"));
-    $("#saved").attr("disabled", true);
-    fillCity();
-    console.log(city.input);
-});
-
 function callWeather() {
 
     var cityInput = $(city.input).val().trim();
-
     // console.log(cityInput);
 
     // Query test query link
@@ -106,20 +98,14 @@ function callWeather() {
             // https://api.openweathermap.org/data/2.5/forecast?q=tolleson&units=imperial&appid=d1cbb5981d42bc71b129a89f7ff66db5
 
             // 5 day forecast
-            // var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&units=imperial&appid=" + APIkey
-            // $.ajax({
-            //     url: queryURL,
-            //     method: "GET"
-            // })
-            //     .then(function (response) {
+            var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + "&units=imperial&appid=" + APIkey
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+                .then(function (response) {
 
-            //     });
-
-
-
-            // console.log(cityName)
-            // console.log(qLat);
-            // console.log(qLon);          
+                });
 
             // Query test link
             // https://api.openweathermap.org/data/2.5/uvi/forecast?lat=33.45&lon=-112.2593&appid=d1cbb5981d42bc71b129a89f7ff66db5
@@ -151,7 +137,6 @@ function callWeather() {
                         $(uvIndex).attr("class", "uvVH").append(" (very high)");
                     }
                     if (uvRes >= 11) {
-
                         $(uvIndex).attr("class", "uvEH").append(" (extremely high)");
                     };
 
@@ -159,6 +144,9 @@ function callWeather() {
 
             clearCity();
 
+            // console.log(cityName)
+            // console.log(qLat);
+            // console.log(qLon);  
         });
 };
 
@@ -168,3 +156,24 @@ function clearCity() {
     $("#search").attr("disabled", true);
 };
 
+$(window).on("load", function () {
+    cities = JSON.parse(localStorage.getItem("cities"));
+    if (cities === null) {
+        cities = [];
+        // console.log(cities);
+    }
+    else if (cities !== null) {
+        cities = JSON.parse(localStorage.getItem("cities"));
+        $("#saved").attr("disabled", true);
+        fillCity();
+        // console.log(cities);
+    };
+});
+
+// Manual recall off city storage
+// $("#saved").on("click", function () {
+//     cities = JSON.parse(localStorage.getItem("cities"));
+//     $("#saved").attr("disabled", true);
+//     fillCity();
+//     console.log(city.input);
+// });
