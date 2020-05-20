@@ -15,7 +15,7 @@ When the website is accessed, they are presented with the index page.
 ```
 When the user enters a city on the search box, they are presented with the stats right away.
 ```
-![First City Entry](./assets/citycenter.png)
+![First City Entry](./assets/cityenter.png)
 
 ```
 If user chooses to leave, the city list is stored in local storage and re-populated for use again.
@@ -24,8 +24,8 @@ If user chooses to leave, the city list is stored in local storage and re-popula
 
 ## APIs used
 
-[jQuery](https://https://learn.jquery.com/)
-[BootStrap](https://www.getbootstrap.com)
-[Open Weather](https://www.openweathermap.org/)
+[jQuery](https://https://learn.jquery.com/)|
+[BootStrap](https://www.getbootstrap.com)|
+[Open Weather](https://www.openweathermap.org/)|
 [momentJs](https://momentjs.com/)
 
