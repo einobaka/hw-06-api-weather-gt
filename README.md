@@ -1,6 +1,6 @@
 # hw-06-api-weather-gt
 
-Homework 06 - API weather
+Homework 06 - API weather -
 [Weather Dashboard (link)](https://einobaka.github.io/hw-06-api-weather-gt/index.html)
 
 ## App Use
