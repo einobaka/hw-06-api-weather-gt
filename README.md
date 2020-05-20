@@ -24,8 +24,8 @@ If user chooses to leave, the city list is stored in local storage and re-popula
 
 ## APIs used
 
-[jQuery](https://https://learn.jquery.com/)|
-[BootStrap](https://www.getbootstrap.com)|
-[Open Weather](https://www.openweathermap.org/)|
+[jQuery](https://https://learn.jquery.com/) |
+[BootStrap](https://www.getbootstrap.com) |
+[Open Weather](https://www.openweathermap.org/) |
 [momentJs](https://momentjs.com/)
 
