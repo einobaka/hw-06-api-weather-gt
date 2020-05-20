@@ -1,5 +1,7 @@
 # hw-06-api-weather-gt
+
 Homework 06 - API weather
+[Weather Dashboard (link)](https://einobaka.github.io/hw-06-api-weather-gt/index.html)
 
 ## App Use
 
@@ -24,7 +26,7 @@ If user chooses to leave, the city list is stored in local storage and re-popula
 
 ## APIs used
 
-[jQuery](https://https://learn.jquery.com/) |
+[jQuery](https://learn.jquery.com/) |
 [BootStrap](https://www.getbootstrap.com) |
 [Open Weather](https://www.openweathermap.org/) |
 [momentJs](https://momentjs.com/)
