@@ -3,6 +3,10 @@ body {
     background-color:rgba(255, 166, 0, 0.322);
 }
 
+.bold {
+    font-weight: bold;
+}
+
 .text {
     background-color: orange;
     text-align: center;
@@ -60,8 +64,8 @@ body {
 }
 
 .smallWeather {
-    width: 130px;
-    height: 180px;
+    width: 135px;
+    height: 185px;
     margin: 5px;
     padding: 5px;
     outline-style: solid;

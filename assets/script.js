@@ -28,7 +28,7 @@ function fillCity() {
     $("li").on("click", function (e) {
         e.preventDefault();
         var selectCity = $(this).attr("city");
-        console.log(selectCity)
+        // console.log(selectCity)
         $("#city").val(selectCity)
         $("#cityDiv").remove();
         $("#fiveday").empty();
@@ -44,6 +44,7 @@ $("#search").on("click", function (e) {
     // console.log(cityInput);
     cities.push(cityInput);
     $("#cityDiv").remove();
+    $("#fiveday").empty();
     fillCity();
     callWeather();
     localStorage.setItem("cities", JSON.stringify(cities));
@@ -93,7 +94,7 @@ function callWeather() {
             $(icon).attr("src", iconBase + iconResponse + ".png")
             $(tempP).text("Temperature: " + cityTemp + " ºF");
             $(humP).text("Humidity: " + cityHum + "%");
-            $(windP).text("Wind Speed: " + cityWind + " MPH")
+            $(windP).text("Wind Speed: " + cityWind + " MPH");
             $(uvSpan).attr("id", "uv");
             $(forecast).text("Five Day Forecast").attr("class", "text");
 
@@ -108,13 +109,14 @@ function callWeather() {
             })
                 .then(function (response) {
 
-                    var timeStamp = [
-                        response.list[5].dt,
-                        response.list[13].dt,
-                        response.list[21].dt,
-                        response.list[29].dt,
-                        response.list[37].dt,
+                    var next = [
+                        { day: moment().add(1, 'days').format('L') },
+                        { day: moment().add(2, 'days').format('L') },
+                        { day: moment().add(3, 'days').format('L') },
+                        { day: moment().add(4, 'days').format('L') },
+                        { day: moment().add(5, 'days').format('L') },
                     ];
+
                     var resDesc = [
                         response.list[5].weather[0].description,
                         response.list[13].weather[0].description,
@@ -147,22 +149,24 @@ function callWeather() {
                     for (let i = 0; i < 5; i++) {
 
                         var smallCol = $("<div>");
+                        var dayS = $("<p>");
                         var tempPS = $("<p>");
                         var humPS = $("<p>");
                         var iconS = $("<img>");
 
+                        var day = next[i].day;
                         var iconBase = "http://openweathermap.org/img/wn/";
                         var iconResponse = resCond[i];
-                        var dt = timeStamp[i];
                         var temp = resTemp[i];
                         var cond = resDesc[i];
                         var hum = resHum[i];
 
                         $("#fiveday").append(smallCol);
-                        $(smallCol).attr("class", "smallWeather").attr("id", dt).append("(" + cond + ")").append(iconS).append(tempPS).append(humPS)
+                        $(smallCol).attr("class", "smallWeather").append(dayS).append("(" + cond + ")").append(iconS).append(tempPS).append(humPS)
                         $(iconS).attr("src", iconBase + iconResponse + ".png");
                         $(tempPS).text("Temp: " + temp + "ºF");
                         $(humPS).text("Humidity: " + hum + "%");
+                        $(dayS).text(day).attr("class", "bold");
 
                         // console.log(iconResponse);
                     }
